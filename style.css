@@ -1,0 +1,845 @@
+/* ==========================
+   MEMENTO VIVERE V2
+   PART 1
+========================== */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
+:root{
+
+--bg:#090909;
+--card:#141414;
+--glass:rgba(255,255,255,.05);
+--border:rgba(255,255,255,.08);
+--text:#ffffff;
+--muted:#bbbbbb;
+--accent:#f3f3f3;
+
+}
+
+body{
+
+background:var(--bg);
+color:var(--text);
+
+font-family:"Inter",sans-serif;
+
+overflow-x:hidden;
+
+line-height:1.8;
+
+}
+
+/* ---------- Film Grain ---------- */
+
+#grain{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+pointer-events:none;
+
+opacity:.05;
+
+background-image:url("https://grainy-gradients.vercel.app/noise.svg");
+
+z-index:999;
+
+}
+
+/* ---------- Loader ---------- */
+
+#loader{
+
+position:fixed;
+
+inset:0;
+
+background:#050505;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+z-index:99999;
+
+transition:1s;
+
+}
+
+#loader h1{
+
+font-family:"Cormorant Garamond",serif;
+
+font-size:4rem;
+
+letter-spacing:10px;
+
+}
+
+#loader p{
+
+margin-top:15px;
+
+color:#888;
+
+letter-spacing:4px;
+
+}
+
+/* ---------- NAV ---------- */
+
+nav{
+
+position:fixed;
+
+top:25px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+width:min(1100px,92%);
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:18px 30px;
+
+background:var(--glass);
+
+backdrop-filter:blur(18px);
+
+border:1px solid var(--border);
+
+border-radius:20px;
+
+z-index:9999;
+
+}
+
+.logo{
+
+font-family:"Cormorant Garamond",serif;
+
+font-size:1.6rem;
+
+letter-spacing:3px;
+
+}
+
+nav ul{
+
+display:flex;
+
+gap:28px;
+
+list-style:none;
+
+}
+
+nav a{
+
+text-decoration:none;
+
+color:white;
+
+font-size:.95rem;
+
+transition:.35s;
+
+}
+
+nav a:hover{
+
+opacity:.6;
+
+}
+
+/* ---------- HERO ---------- */
+
+header{
+
+min-height:100vh;
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+padding:140px 8%;
+
+gap:80px;
+
+}
+
+.hero-left{
+
+flex:1;
+
+}
+
+.hero-left h1{
+
+font-family:"Cormorant Garamond",serif;
+
+font-size:6rem;
+
+line-height:1;
+
+}
+
+.hero-left h2{
+
+font-size:2rem;
+
+font-weight:300;
+
+margin-top:20px;
+
+}
+
+#changingQuote{
+
+margin-top:30px;
+
+max-width:520px;
+
+color:var(--muted);
+
+font-size:1.05rem;
+
+}
+
+.hero-right{
+
+flex:1;
+
+display:flex;
+
+justify-content:center;
+
+}
+
+.hero-right img{
+
+width:380px;
+
+max-width:100%;
+
+border-radius:28px;
+
+box-shadow:0 25px 60px rgba(0,0,0,.45);
+
+transition:.5s;
+
+}
+
+.hero-right img:hover{
+
+transform:translateY(-8px);
+
+}
+
+/* ---------- BUTTON ---------- */
+
+.btn{
+
+display:inline-block;
+
+margin-top:40px;
+
+padding:15px 35px;
+
+border-radius:50px;
+
+background:white;
+
+color:black;
+
+text-decoration:none;
+
+font-weight:600;
+
+transition:.4s;
+
+}
+
+.btn:hover{
+
+transform:translateY(-5px);
+
+box-shadow:0 12px 30px rgba(255,255,255,.15);
+
+}
+
+/* ---------- Sections ---------- */
+
+section{
+
+padding:120px 8%;
+
+}
+
+section h2{
+
+font-family:"Cormorant Garamond",serif;
+
+font-size:3rem;
+
+margin-bottom:20px;
+
+}
+
+.section-sub{
+
+color:#888;
+
+margin-bottom:50px;
+
+font-size:1rem;
+
+}
+/* ==========================
+   MEMENTO VIVERE V2
+   PART 2
+========================== */
+
+/* ---------- Intro ---------- */
+
+.intro{
+
+max-width:850px;
+margin:auto;
+text-align:center;
+
+}
+
+.intro p{
+
+font-size:1.15rem;
+color:#cfcfcf;
+line-height:2.2;
+
+}
+
+/* ---------- Gallery ---------- */
+
+.gallery{
+
+column-count:3;
+column-gap:22px;
+
+}
+
+.photo{
+
+break-inside:avoid;
+margin-bottom:22px;
+
+background:#141414;
+
+border-radius:20px;
+
+overflow:hidden;
+
+border:1px solid rgba(255,255,255,.06);
+
+transition:.35s;
+
+}
+
+.photo:hover{
+
+transform:translateY(-8px);
+
+border-color:rgba(255,255,255,.15);
+
+}
+
+.photo img{
+
+width:100%;
+
+display:block;
+
+transition:.5s;
+
+cursor:pointer;
+
+}
+
+.photo:hover img{
+
+transform:scale(1.05);
+
+}
+
+.photo span{
+
+display:block;
+
+padding:18px;
+
+font-size:.92rem;
+
+color:#a9a9a9;
+
+line-height:1.7;
+
+}
+
+/* ---------- Things I Notice ---------- */
+
+.notice-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+
+gap:22px;
+
+margin-top:45px;
+
+}
+
+.notice{
+
+background:#141414;
+
+padding:28px;
+
+border-radius:18px;
+
+border:1px solid rgba(255,255,255,.08);
+
+transition:.35s;
+
+}
+
+.notice:hover{
+
+transform:translateY(-6px);
+
+background:#1b1b1b;
+
+}
+
+/* ---------- Journal ---------- */
+
+.journal{
+
+background:#141414;
+
+padding:35px;
+
+border-radius:24px;
+
+border:1px solid rgba(255,255,255,.08);
+
+max-width:900px;
+
+margin:auto;
+
+}
+
+.journal p{
+
+margin-bottom:22px;
+
+color:#d2d2d2;
+
+}
+
+/* ---------- About ---------- */
+
+#about p{
+
+max-width:900px;
+
+font-size:1.08rem;
+
+line-height:2;
+
+color:#d0d0d0;
+
+}
+
+/* ---------- Behind Lens ---------- */
+
+#lens{
+
+text-align:center;
+
+}
+
+#lens p{
+
+max-width:780px;
+
+margin:auto;
+
+font-size:1.1rem;
+
+color:#cfcfcf;
+
+line-height:2;
+
+}
+
+/* ---------- Create Yours ---------- */
+
+.create-card{
+
+background:#141414;
+
+padding:45px;
+
+border-radius:25px;
+
+max-width:850px;
+
+margin:auto;
+
+text-align:center;
+
+border:1px solid rgba(255,255,255,.08);
+
+}
+
+.create-card p{
+
+font-size:1.1rem;
+
+line-height:2;
+
+margin-bottom:35px;
+
+color:#d0d0d0;
+
+}
+
+#createBtn{
+
+padding:16px 38px;
+
+border:none;
+
+border-radius:50px;
+
+background:white;
+
+color:black;
+
+font-weight:600;
+
+cursor:pointer;
+
+transition:.35s;
+
+}
+
+#createBtn:hover{
+
+transform:translateY(-5px);
+
+box-shadow:0 12px 30px rgba(255,255,255,.15);
+
+}
+
+/* ---------- Contact ---------- */
+
+#contact{
+
+text-align:center;
+
+}
+
+#contact p{
+
+margin:25px 0;
+
+font-size:1rem;
+
+color:#cfcfcf;
+
+}
+/* ==========================
+   MEMENTO VIVERE V2
+   PART 3
+========================== */
+
+/* ---------- Footer ---------- */
+
+footer{
+
+padding:100px 20px;
+
+text-align:center;
+
+background:#050505;
+
+border-top:1px solid rgba(255,255,255,.08);
+
+}
+
+footer h2{
+
+font-family:"Cormorant Garamond",serif;
+
+font-size:2.4rem;
+
+margin-bottom:20px;
+
+}
+
+footer p{
+
+color:#9f9f9f;
+
+line-height:2;
+
+}
+
+.copyright{
+
+margin-top:35px;
+
+font-size:.9rem;
+
+opacity:.5;
+
+}
+
+/* ---------- Secret Message ---------- */
+
+#secretMessage{
+
+position:fixed;
+
+inset:0;
+
+display:none;
+
+justify-content:center;
+
+align-items:center;
+
+flex-direction:column;
+
+background:rgba(0,0,0,.97);
+
+z-index:100000;
+
+text-align:center;
+
+padding:40px;
+
+}
+
+#secretMessage h2{
+
+font-size:4rem;
+
+font-family:"Cormorant Garamond",serif;
+
+margin-bottom:20px;
+
+}
+
+#secretMessage p{
+
+max-width:600px;
+
+line-height:2;
+
+color:#cfcfcf;
+
+}
+
+/* ---------- Fade Animation ---------- */
+
+section{
+
+opacity:0;
+
+transform:translateY(60px);
+
+animation:fadeUp .8s forwards;
+
+}
+
+section:nth-child(2){animation-delay:.2s;}
+section:nth-child(3){animation-delay:.4s;}
+section:nth-child(4){animation-delay:.6s;}
+section:nth-child(5){animation-delay:.8s;}
+
+@keyframes fadeUp{
+
+from{
+
+opacity:0;
+
+transform:translateY(60px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+/* ---------- Scrollbar ---------- */
+
+::-webkit-scrollbar{
+
+width:8px;
+
+}
+
+::-webkit-scrollbar-track{
+
+background:#090909;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:#555;
+
+border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+background:#777;
+
+}
+
+/* ---------- Selection ---------- */
+
+::selection{
+
+background:white;
+
+color:black;
+
+}
+
+/* ---------- Responsive ---------- */
+
+@media(max-width:1000px){
+
+header{
+
+flex-direction:column-reverse;
+
+text-align:center;
+
+padding-top:170px;
+
+}
+
+.hero-left h1{
+
+font-size:4rem;
+
+}
+
+.hero-right img{
+
+width:280px;
+
+}
+
+.gallery{
+
+column-count:2;
+
+}
+
+nav ul{
+
+display:none;
+
+}
+
+}
+
+@media(max-width:700px){
+
+.gallery{
+
+column-count:1;
+
+}
+
+section{
+
+padding:80px 7%;
+
+}
+
+.hero-left h1{
+
+font-size:3rem;
+
+}
+
+.hero-left h2{
+
+font-size:1.4rem;
+
+}
+
+section h2{
+
+font-size:2.2rem;
+
+}
+
+.btn{
+
+width:100%;
+
+text-align:center;
+
+}
+
+.create-card{
+
+padding:30px;
+
+}
+
+.notice-grid{
+
+grid-template-columns:1fr;
+
+}
+
+}
